@@ -49,7 +49,7 @@ function App() {
   const addRuleToCombine = () => {
     // if (currentRule) {
       const cleanRuleString = ruleString.replace(/\n/g, ' ');
-      setRuleStrings([...ruleStrings, cleanRuleString]);
+      setRuleStrings([...ruleStrings, `(${cleanRuleString})`]);
       setRuleString("")
     // }
   };
