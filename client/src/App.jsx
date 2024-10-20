@@ -9,11 +9,13 @@ function App() {
   const [keyValuePairs, setKeyValuePairs] = useState([{ key: "", value: "" }]); // Store user input for rule evaluation
   const [result, setResult] = useState("");
 
-
+    // console.log(import.meta.env);
+    
     // Function to fetch the current rule from the database
     const fetchCurrentRule = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/rules/getCurrentRule");
+
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/rules/getCurrentRule`);
         if (response.status === 200) {
           const cleanCurrentRule = response.data.currentRule.replace(/\n/g, ' ');
           setCurrentRule(cleanCurrentRule);
@@ -31,7 +33,7 @@ function App() {
   // API: Create Rule
   const createRule = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/rules/create", {ruleString });
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/rules/create`, {ruleString });
       
       if (response.data.success) {
         setCurrentRule(response.data.rule); // Store the returned AST
@@ -57,7 +59,7 @@ function App() {
   // API: Combine Rules
   const combineRules = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/rules/combine", { rules: ruleStrings });
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/rules/combine`, { rules: ruleStrings });
       if (response.data.success) {
         setCurrentRule(response.data.rule); // Store the combined rule
         setRuleStrings([]); // Reset rules to combine
@@ -90,7 +92,7 @@ function App() {
     }, {});
     // console.log(attributes);
     try {
-      const response = await axios.post("http://localhost:5000/api/rules/evaluate", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/rules/evaluate`, {
         data: attributes, 
       });
       

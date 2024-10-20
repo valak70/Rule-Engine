@@ -18,7 +18,7 @@ const connect = async () => {
 
 
 app.use(cors({
-  origin: ['http://localhost:5000', 'http://localhost:5173'], // Add both origins
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow all necessary methods
   credentials: true, // Allow credentials (cookies) to be sent and received
 }));
