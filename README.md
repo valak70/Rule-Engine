@@ -44,7 +44,7 @@ PORT=5000
 ```
 - Client Environment Setup:
 ``` bash 
-VITE_BACKEND_URL=https://localhost:5000
+VITE_BACKEND_URL=http://localhost:5000
 ```
 ### Run the Application
 - Start the API server:
